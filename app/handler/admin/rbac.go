@@ -16,7 +16,7 @@ var (
 	RbacHandler = new(rbacHandler)
 )
 
-func (h *rbacHandler) GetTreeMenu(c *gin.Context) {
+func (h *rbacHandler) GetMenuTree(c *gin.Context) {
 	form := new(menutree.UserMenuForm)
 	if err := c.ShouldBind(&form); err != nil {
 		c.JSON(http.StatusBadRequest, appresp.Err(err))

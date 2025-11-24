@@ -72,7 +72,7 @@ func initAdmin(engine *gin.Engine) {
 	AdminGroup.POST("/subsystem/del", admin.SubsystemHdl.Delete)      // delete
 	AdminGroup.POST("/subsystem/setInfo", admin.SubsystemHdl.SetInfo) // setInfo
 
-	AdminGroup.GET("/menu_permission/detail", admin.MenuPermissionHdl.Detail) // get detail
-	AdminGroup.POST("/menu_permission/save", admin.MenuPermissionHdl.Save)    // save
+	AdminGroup.GET("/user_permission/detail", admin.UserPermissionsHdl.Detail)                // get detail
+	AdminGroup.POST("/user_permission/setPermission", admin.UserPermissionsHdl.SetPermission) // save
 
 }

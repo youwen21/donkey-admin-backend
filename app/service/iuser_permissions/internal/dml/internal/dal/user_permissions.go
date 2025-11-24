@@ -208,10 +208,10 @@ func (d *userPermissionsDal) Delete(pk int) error {
 	return err
 }
 
-func (d *userPermissionsDal) Exec(sql string, values ...interface{}) error {
+func (d *userPermissionsDal) Exec(sql string, values ...interface{}) (int64, error) {
 	session := d.newSession()
-	err := session.Exec(sql, values...).Error
-	return err
+	session.Exec(sql, values...)
+	return session.RowsAffected, session.Error
 }
 
 func (d *userPermissionsDal) RawGet(sql string) (*model.UserPermissions, error) {

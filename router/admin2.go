@@ -21,7 +21,7 @@ func initAdmin2(engine *gin.Engine) {
 	//cacheAPI.Use(middleware.BrowserCacheMiddleware)
 	{
 		// 菜单树
-		cacheAPI.GET("/treeMenu", admin.RbacHandler.GetTreeMenu)
+		cacheAPI.GET("/menu/tree", admin.RbacHandler.GetMenuTree)
 	}
 
 	// 权限相关

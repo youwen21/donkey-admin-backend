@@ -77,7 +77,7 @@ func (dm *userPermissionsDml) Delete(pk int) error {
 	return dal.UserPermissionsDal.Delete(pk)
 }
 
-func (dm *userPermissionsDml) Exec(sql string, values ...interface{}) error {
+func (dm *userPermissionsDml) Exec(sql string, values ...interface{}) (int64, error) {
 	return dal.UserPermissionsDal.Exec(sql, values...)
 }
 

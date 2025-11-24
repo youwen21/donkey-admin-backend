@@ -1,6 +1,7 @@
 package iuser_permissions
 
 import (
+	"fmt"
 	"gofly/app/model"
 	"gofly/app/service/iuser_permissions/internal/dml"
 	"gofly/app/service/iuser_permissions/user_permissions_def"
@@ -79,7 +80,7 @@ func (s *srv) Delete(pk int) error {
 	return err
 }
 
-func (s *srv) Exec(sql string, values ...interface{}) error {
+func (s *srv) Exec(sql string, values ...interface{}) (int64, error) {
 	return dml.UserPermissionsDml.Exec(sql, values...)
 }
 
@@ -89,4 +90,9 @@ func (s *srv) RawGet(sql string) (*model.UserPermissions, error) {
 
 func (s *srv) RawFind(sql string) ([]model.UserPermissions, error) {
 	return dml.UserPermissionsDml.RawFind(sql)
+}
+
+func (s *srv) ClearUserPermissions(userId int, systemId int) (int64, error) {
+	sql := fmt.Sprintf("DELETE FROM `%s` WHERE `user_id` = ? AND `system_id` = ? ", (&model.UserPermissions{}).TableName())
+	return s.Exec(sql, userId, systemId)
 }

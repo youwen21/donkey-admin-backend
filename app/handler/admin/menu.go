@@ -5,6 +5,7 @@ import (
 	"gofly/app/service/imenu"
 	"gofly/app/service/imenu/menu_admin"
 	"gofly/app/service/imenu/menu_def"
+	"gofly/middleware/middle_auth"
 	"gofly/req-resp/appresp"
 	"net/http"
 
@@ -67,6 +68,8 @@ func (hdl *menuHdl) Add(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, appresp.Err(err))
 		return
 	}
+	info.CreateUid = middle_auth.GetAdminId(c)
+
 	_, err := menu_admin.AdminSrv.Add(info)
 	c.JSON(http.StatusOK, appresp.Reps(info, err))
 }
@@ -77,6 +80,7 @@ func (hdl *menuHdl) Update(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, appresp.Err(err))
 		return
 	}
+	info.UpdateUid = middle_auth.GetAdminId(c)
 
 	_, err := menu_admin.AdminSrv.Update(info)
 	c.JSON(http.StatusOK, appresp.Reps(info, err))

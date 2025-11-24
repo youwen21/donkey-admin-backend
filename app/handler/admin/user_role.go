@@ -5,6 +5,7 @@ import (
 	"gofly/app/service/iuser_role"
 	"gofly/app/service/iuser_role/user_role_admin"
 	"gofly/app/service/iuser_role/user_role_def"
+	"gofly/middleware/middle_auth"
 	"gofly/req-resp/appresp"
 	"net/http"
 
@@ -67,6 +68,8 @@ func (hdl *userRoleHdl) Add(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, appresp.Err(err))
 		return
 	}
+	info.CreateUid = middle_auth.GetAdminId(c)
+
 	err := iuser_role.Srv.Insert(info)
 	c.JSON(http.StatusOK, appresp.Reps(info, err))
 }

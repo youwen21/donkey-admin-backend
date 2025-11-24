@@ -76,7 +76,7 @@ func (s *menuSrv) GetAuthedMenuOperation(systemId int, roleIdList []int) (*role_
 
 	AuthMap := make(map[int]role_menu_def.AuthMenu)
 	for _, v := range res {
-		operations := libutils.SplitToIntList(v.OperaIds, ".")
+		operations := libutils.SplitIntList(v.OperaIds, ".")
 		authed, ok := AuthMap[v.MenuId]
 		if !ok {
 			AuthMap[v.MenuId] = role_menu_def.AuthMenu{

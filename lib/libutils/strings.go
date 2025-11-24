@@ -9,7 +9,7 @@ import (
 const maxInt = int(^uint(0) >> 1)
 
 // 转换逗号分割的整数字符串为整数数组
-func SplitToIntList(strCommas string, sep string) []int {
+func SplitIntList(strCommas string, sep string) []int {
 	var idList []int
 	for _, i := range strings.Split(strCommas, sep) {
 		i = strings.Trim(i, " \t")
@@ -25,7 +25,7 @@ func SplitToIntList(strCommas string, sep string) []int {
 	return idList
 }
 
-func IntSliceJoin(elems []int, sep string) string {
+func JoinIntList(elems []int, sep string) string {
 	strSlice := make([]string, len(elems), len(elems))
 
 	for i, v := range elems {
