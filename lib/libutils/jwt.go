@@ -50,7 +50,7 @@ func (j *jwtUtil) GetToken(c *gin.Context, tokenKey string) (string, error) {
 		return form.Authorization, nil
 	}
 
-	return "", errors.New("need token")
+	return "", errors.New("unauthorized")
 }
 
 func (j *jwtUtil) parseToken(tokenString string, tokenSecret string) (jwt.MapClaims, error) {

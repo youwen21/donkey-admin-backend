@@ -10,7 +10,11 @@ import (
 /*  */
 
 func initAdmin(engine *gin.Engine) {
-	//engine.Use(middleware.AdminToken())
+	cacheAPI := engine.Group("/admin-api/v1").Use(middleware.Cors.GinCors()).Use(middleware.AdminToken())
+	//cacheAPI = cacheAPI.Use(middleware.BrowserCacheMiddleware) // 缓存中间件, 浏览器缓存接口数据
+	// 菜单树
+	cacheAPI.GET("/menu/tree", admin.MenuTreeHandler.AclMenuTree)
+
 	AdminGroup := engine.Group("/admin-api/v1").Use(middleware.Cors.GinCors()).Use(middleware.AdminToken())
 	AdminGroup.GET("/organization/query", admin.OrganizationHdl.Query)      // query list
 	AdminGroup.GET("/organization/get", admin.OrganizationHdl.Get)          // get one detail
@@ -44,12 +48,6 @@ func initAdmin(engine *gin.Engine) {
 	AdminGroup.POST("/user_role/add", admin.UserRoleHdl.Add)       // insert
 	AdminGroup.POST("/user_role/update", admin.UserRoleHdl.Update) // update
 	AdminGroup.POST("/user_role/del", admin.UserRoleHdl.Delete)    // delete
-
-	//AdminGroup.GET("/user_permissions/query", admin.UserPermissionsHdl.Config)    // query list
-	//AdminGroup.GET("/user_permissions/get", admin.UserPermissionsHdl.Get)        // get one detail
-	//AdminGroup.POST("/user_permissions/add", admin.UserPermissionsHdl.Add)       // insert
-	//AdminGroup.POST("/user_permissions/update", admin.UserPermissionsHdl.Update) // update
-	//AdminGroup.POST("/user_permissions/del", admin.UserPermissionsHdl.Delete)    // delete
 
 	AdminGroup.GET("/menu/query", admin.MenuHdl.Query)      // query list
 	AdminGroup.GET("/menu/get", admin.MenuHdl.Get)          // get one detail

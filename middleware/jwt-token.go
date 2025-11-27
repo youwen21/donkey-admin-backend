@@ -38,7 +38,7 @@ func jwtTokenWare(tokenKey string, secret string, storeKey string) func(c *gin.C
 
 // InnerToken 内部api token
 func InnerToken() func(c *gin.Context) {
-	tokenKey := middle_auth.InnerJwtKey  // read from config
+	tokenKey := middle_auth.InnerAuthKey // read from config
 	secret := middle_auth.InnerJwtSecret //  os.Getenv("USER_JWT_SECRET")
 	systemKey := middle_auth.InnerSystemKey
 	return jwtTokenWare(tokenKey, secret, systemKey)
@@ -46,13 +46,5 @@ func InnerToken() func(c *gin.Context) {
 
 // AdminToken 避免每次调用AdminTokenWare中间件都要传入 tokenKet, secret, userKey, 三个参数， 封装一下， 自行改动。
 func AdminToken() func(c *gin.Context) {
-	return jwtTokenWare(middle_auth.AdminJwtKey, middle_auth.AdminJwtSecret, middle_auth.AdminUserKey)
-}
-
-// UserToken member用户token
-func UserToken() func(c *gin.Context) {
-	tokenKey := middle_auth.UserJwtKey // read from config
-	secret := middle_auth.UserJwtSecret
-	userKey := middle_auth.UserAuthKey
-	return jwtTokenWare(tokenKey, secret, userKey)
+	return jwtTokenWare(middle_auth.AdminAuthKey, middle_auth.AdminJwtSecret, middle_auth.AdminUserKey)
 }

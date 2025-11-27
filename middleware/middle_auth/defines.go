@@ -2,17 +2,13 @@ package middle_auth
 
 const (
 	// admin token
-	AdminJwtKey    = "AdminAuthorization" // 取jwtKey
-	AdminJwtSecret = "ADMIN_JWT_SECRET"   // jwt-setcret
-	AdminUserKey   = "admin_id"           // 存在gin.Context的key
+	AdminAuthKey   = "X-Admin-Authorization" // header 或者 cookie key
+	AdminJwtSecret = "ADMIN_JWT_SECRET"      // jwt secret
+	AdminUserKey   = "admin_id"              // auth 认证成功后，uid 存在gin.Context key
 
 	// inner token
-	InnerJwtKey    = "Inner-Authorization"
-	InnerJwtSecret = "INNER_JWT_SECRET"
-	InnerSystemKey = "system_id" // 存在gin.Context的key
+	InnerAuthKey   = "X-Inner-Authorization" // header 或者 cookie key
+	InnerJwtSecret = "INNER_JWT_SECRET"      // jwt secret
+	InnerSystemKey = "system_id"             // auth 认证成功后，uid 存在gin.Context的key
 
-	// user token
-	UserJwtKey    = "Token"
-	UserJwtSecret = "INNER_JWT_SECRET"
-	UserAuthKey   = "user_id" // 存在gin.Context的key
 )

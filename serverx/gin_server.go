@@ -28,19 +28,19 @@ func init() {
 	GinEngine = gin.Default()
 	router.InitRouter(GinEngine)
 
-	GinEngine.NoRoute(func(ginContext *gin.Context) {
+	GinEngine.NoRoute(func(ginCtx *gin.Context) {
 		//upath := strings.TrimLeft(ginContext.Request.URL.Path, "/")
-		if StaticServer != nil && StaticServer.CanServe(ginContext.Request.URL.Path) {
-			StaticServer.ServeHTTP(ginContext.Writer, ginContext.Request)
+		if StaticServer != nil && StaticServer.CanServe(ginCtx.Request.URL.Path) {
+			StaticServer.ServeHTTP(ginCtx.Writer, ginCtx.Request)
 			return
 		}
 
 		// Dist前端存在时，NotFound 由前端项目维护
 		if DistServer != nil {
-			DistServer.ServeHTTP(ginContext.Writer, ginContext.Request)
+			DistServer.ServeHTTP(ginCtx.Writer, ginCtx.Request)
 			return
 		}
 
-		http.NotFound(ginContext.Writer, ginContext.Request)
+		http.NotFound(ginCtx.Writer, ginCtx.Request)
 	})
 }

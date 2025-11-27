@@ -3,6 +3,7 @@ package auth
 import (
 	"errors"
 	"github.com/golang-jwt/jwt/v4"
+	"gofly/app/model"
 	"gofly/app/service/auth/auth_def"
 	"gofly/app/service/iuser"
 	"gofly/lib/libutils"
@@ -16,7 +17,7 @@ var (
 	Srv = &srv{}
 )
 
-func (s *srv) Login(f *auth_def.AuthForm) (string, *auth_def.AdminInfo, error) {
+func (s *srv) Login(f *auth_def.LoginForm) (string, *model.UserBaseInfo, error) {
 	adminData, err := iuser.Srv.GetByUsername(f.Username)
 
 	if nil == adminData || err != nil {
@@ -29,18 +30,18 @@ func (s *srv) Login(f *auth_def.AuthForm) (string, *auth_def.AdminInfo, error) {
 		return "", nil, errors.New("用户名或密码错误2")
 	}
 
-	tokenString, err := libutils.Jwt.GenToken(middle_auth.AdminJwtSecret, jwt.MapClaims{middle_auth.AdminUserKey: adminData.Id, "exp": time.Now().Unix() + 86400*30})
+	tokenString, err := libutils.Jwt.GenToken(middle_auth.AdminJwtSecret, jwt.MapClaims{middle_auth.AdminUserKey: adminData.Id, "exp": time.Now().Unix() + 86400}) //*30
 	if err != nil {
 		return "", nil, err
 	}
 
-	adminInfo := &auth_def.AdminInfo{
-		Id:     adminData.Id,
-		Name:   adminData.Name,
-		Avatar: adminData.Avatar,
-		IsRoot: adminData.IsRoot,
-		RoleId: adminData.RoleId,
-		OrgId:  adminData.OrgId,
-	}
-	return tokenString, adminInfo, nil
+	//adminInfo := &auth_def.AdminInfo{
+	//	Id:     adminData.Id,
+	//	Name:   adminData.Name,
+	//	Avatar: adminData.Avatar,
+	//	IsRoot: adminData.IsRoot,
+	//	RoleId: adminData.RoleId,
+	//	OrgId:  adminData.OrgId,
+	//}
+	return tokenString, &adminData.UserBaseInfo, nil
 }

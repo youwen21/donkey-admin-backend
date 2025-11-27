@@ -4,11 +4,13 @@ import "time"
 
 /*  */
 
-type StaffInfo struct {
+type UserBaseInfo struct {
 	Id     int    `json:"id" form:"id" gorm:"autoIncrement"` //
 	Name   string `json:"name" form:"name"`                  // 登陆名
 	Avatar string `json:"avatar" form:"avatar"`              // 用户头像
+}
 
+type StaffInfo struct {
 	RealName string `json:"real_name" form:"real_name"` // 真实名字
 	Email    string `json:"email" form:"email"`         // 员工邮箱
 	Phone    string `json:"phone" form:"phone"`         // 员工手机号
@@ -23,6 +25,7 @@ type StaffInfo struct {
 }
 
 type User struct {
+	UserBaseInfo
 	StaffInfo
 	Password   string     `json:"password" form:"password"`                                            // 密码
 	CreateUid  int        `json:"create_uid" form:"create_uid"`                                        //

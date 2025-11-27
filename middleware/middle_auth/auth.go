@@ -11,7 +11,3 @@ func GetAdminId(c *gin.Context) int {
 func GetSystemId(c *gin.Context) int {
 	return c.GetInt(InnerSystemKey)
 }
-
-func GetUserId(c *gin.Context) int {
-	return c.GetInt(UserAuthKey)
-}
