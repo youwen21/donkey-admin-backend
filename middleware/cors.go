@@ -21,12 +21,18 @@ func (c *cors) RawCors(next http.Handler) http.HandlerFunc {
 		if origin == "" {
 			origin = r.Header.Get("ORIGIN")
 		}
-
-		w.Header().Set("Access-Control-Allow-Origin", origin)
-		w.Header().Set("Access-Control-Expose-Headers", "Access-Control-Allow-Origin")
+		// 允许跨域的方法
 		w.Header().Set("Access-Control-Allow-Methods", methods)
-		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		// 允许跨域的 头 前端可以访问的
+		w.Header().Set("Access-Control-Expose-Headers", "X-Auth-Token, X-Request-Id")
+		// 允许跨域的 头 服务器端允许的
 		w.Header().Set("Access-Control-Allow-Headers", headers)
+
+		// 允许跨域 cookie
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		// 允许跨域 cookie 的域名, 必须https
+		w.Header().Set("Access-Control-Allow-Origin", origin) // 最好是配置指定，X-ORIGIN 不安全。
 
 		if r.Method == "OPTIONS" {
 			w.WriteHeader(http.StatusNoContent)
@@ -45,12 +51,13 @@ func (c *cors) GinCors() gin.HandlerFunc {
 		if origin == "" {
 			origin = c.Request.Header.Get("ORIGIN")
 		}
+		c.Writer.Header().Set("Access-Control-Allow-Methods", methods)
+
+		c.Writer.Header().Set("Access-Control-Expose-Headers", "Access-Control-Allow-Origin")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", headers)
 
 		c.Writer.Header().Set("Access-Control-Allow-Origin", origin)
-		c.Writer.Header().Set("Access-Control-Expose-Headers", "Access-Control-Allow-Origin")
-		c.Writer.Header().Set("Access-Control-Allow-Methods", methods)
 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
-		c.Writer.Header().Set("Access-Control-Allow-Headers", headers)
 
 		if c.Request.Method == "OPTIONS" {
 			c.AbortWithStatus(204)

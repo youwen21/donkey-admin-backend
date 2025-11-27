@@ -29,7 +29,7 @@ func (s *menuSrv) GetTreeMenu(f *menutree.UserMenuForm) ([]*menutree.TreeMenu, e
 }
 
 func (s *menuSrv) GetMenuList(f *menutree.UserMenuForm) ([]model.Menu, error) {
-	adminInfo, err := iuser.Srv.Get(f.AdminUserId)
+	adminInfo, err := iuser.Srv.Get(f.AdminId)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func (s *menuSrv) GetMenuList(f *menutree.UserMenuForm) ([]model.Menu, error) {
 
 	// 非root, 获取用户角色
 	// 获取角色菜单
-	roleIds, _ := s.GetRoleIds(f.AdminUserId)
+	roleIds, _ := s.GetRoleIds(f.AdminId)
 	ruleMenus, err := irole_menu.Srv.GetListBy(f.SystemId, roleIds)
 
 	menuIdList := make([]int, 0)

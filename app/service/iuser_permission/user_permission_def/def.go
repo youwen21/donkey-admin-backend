@@ -1,4 +1,4 @@
-package user_permissions_def
+package user_permission_def
 
 import (
 	"errors"
@@ -7,12 +7,17 @@ import (
 	"gofly/app/service/ioperation/operation_def"
 )
 
-type Form struct {
-	SystemId int `json:"system_id" form:"system_id"`
-	UserId   int `json:"user_id" form:"user_id"`
+type MyForm struct {
+	SystemId    int `json:"system_id" form:"system_id"`
+	OperatorUid int // 登录的用户ID
 }
 
-func (f *Form) ToMenuForm() (*menu_def.MenuQueryForm, error) {
+type ConfigForm struct {
+	SystemId int `json:"system_id" form:"system_id"`
+	UserId   int `json:"user_id" form:"user_id"` // 页面中 指定的用户ID
+}
+
+func (f *ConfigForm) ToMenuForm() (*menu_def.MenuQueryForm, error) {
 	if f.SystemId == 0 {
 		return nil, errors.New("system_id is required")
 	}
@@ -24,7 +29,7 @@ func (f *Form) ToMenuForm() (*menu_def.MenuQueryForm, error) {
 	return menuForm, nil
 }
 
-func (f *Form) ToOperationForm() (*operation_def.OperationQueryForm, error) {
+func (f *ConfigForm) ToOperationForm() (*operation_def.OperationQueryForm, error) {
 	if f.SystemId == 0 {
 		return nil, errors.New("system_id is required")
 	}
@@ -35,7 +40,7 @@ func (f *Form) ToOperationForm() (*operation_def.OperationQueryForm, error) {
 	return operaForm, nil
 }
 
-func (f *Form) ToUserPermissionsForm() (*UserPermissionsQueryForm, error) {
+func (f *ConfigForm) ToUserPermissionsForm() (*UserPermissionQueryForm, error) {
 	if f.SystemId == 0 {
 		return nil, errors.New("system_id is required")
 	}
@@ -44,7 +49,7 @@ func (f *Form) ToUserPermissionsForm() (*UserPermissionsQueryForm, error) {
 		return nil, errors.New("user_id is required")
 	}
 
-	UPForm := new(UserPermissionsQueryForm)
+	UPForm := new(UserPermissionQueryForm)
 	UPForm.SystemId = f.SystemId
 	UPForm.UserId = f.UserId
 	UPForm.Page = 1
@@ -90,15 +95,28 @@ func uniqueIntSlice(slice []int) []int {
 }
 
 type MenuPermission struct {
-	Form            *Form            `json:"form"`
+	Form            *ConfigForm      `json:"form"`
 	IsRoot          bool             `json:"is_root"`
 	SystemMenu      []MenuOperation  `json:"system_menu"`
 	UserPermissions *UserPermissions `json:"user_permissions"`
 }
 
 type SetPermissionForm struct {
-	Form
+	ConfigForm
 	UserPermissions
 
 	OperatorUid int
+}
+
+type MenuActions struct {
+	Id       int      `json:"id"`  // menuId
+	Url      string   `json:"url"` // 菜单的URL
+	Name     string   `json:"name"`
+	NodePath string   `json:"node_path"`
+	Actions  []string `json:"actions"`
+}
+
+type MyPermissions struct {
+	IsRoot      bool          `json:"isRoot"`
+	MenuActions []MenuActions `json:"routesActions"`
 }

@@ -17,16 +17,16 @@ func initAdmin2(engine *gin.Engine) {
 	}
 
 	cacheAPI := engine.Group("/admin-api/v1").Use(middleware.Cors.GinCors())
-	//cacheAPI.Use(middleware.AdminToken())
+	cacheAPI.Use(middleware.AdminToken())
 	//cacheAPI.Use(middleware.BrowserCacheMiddleware)
 	{
 		// 菜单树
-		cacheAPI.GET("/menu/tree", admin.RbacHandler.GetMenuTree)
+		cacheAPI.GET("/menu/tree", admin.MenuTreeHandler.AclMenuTree)
 	}
 
 	// 权限相关
 	//{
-	//	adminOpenAPI.GET("/role_menu_perm", admin.RoleMenuPermHandler.Detail)        // 获取指定系统 指定角色拥有的 菜单和按钮权限
+	//	adminOpenAPI.GET("/role_menu_perm", admin.RoleMenuPermHandler.Config)        // 获取指定系统 指定角色拥有的 菜单和按钮权限
 	//	adminOpenAPI.GET("/role_menu_perm/:role_id", admin.RoleMenuPermHandler.Get) // 获取指定系统 指定角色拥有的 菜单和按钮权限
 	//	adminOpenAPI.POST("/role_menu_perm", admin.RoleMenuPermHandler.Edit)        // 更新指定系统 指定角色拥有的权限，t_role_menu
 	//

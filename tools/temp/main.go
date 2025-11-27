@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	pwd := "admin"
+	pwd := "demo111"
 	pwdHash := libutils.EncryptWord(pwd)
 	fmt.Println(pwdHash)
 }

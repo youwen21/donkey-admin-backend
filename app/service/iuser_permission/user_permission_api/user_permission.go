@@ -1,4 +1,4 @@
-package user_permissions_api
+package user_permission_api
 
 /*  */
 

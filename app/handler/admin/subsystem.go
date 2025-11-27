@@ -34,7 +34,7 @@ func (hdl *subsystemHdl) Query(c *gin.Context) {
 	//     form.IdList = libutils.SplitToIntList(form.Ids, ",")
 	// }
 
-	form.OrderBy = append(form.OrderBy, "id desc")
+	form.OrderBy = append(form.OrderBy, "id asc")
 
 	ret, err := subsystem_admin.AdminSrv.Query(form)
 	c.JSON(http.StatusOK, appresp.Reps(ret, err))

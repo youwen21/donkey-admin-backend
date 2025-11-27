@@ -10,8 +10,8 @@ import (
 /*  */
 
 func initAdmin(engine *gin.Engine) {
-	// .Use(middleware.AdminToken())
-	AdminGroup := engine.Group("/admin-api/v1").Use(middleware.Cors.GinCors())
+	//engine.Use(middleware.AdminToken())
+	AdminGroup := engine.Group("/admin-api/v1").Use(middleware.Cors.GinCors()).Use(middleware.AdminToken())
 	AdminGroup.GET("/organization/query", admin.OrganizationHdl.Query)      // query list
 	AdminGroup.GET("/organization/get", admin.OrganizationHdl.Get)          // get one detail
 	AdminGroup.POST("/organization/add", admin.OrganizationHdl.Add)         // insert
@@ -45,7 +45,7 @@ func initAdmin(engine *gin.Engine) {
 	AdminGroup.POST("/user_role/update", admin.UserRoleHdl.Update) // update
 	AdminGroup.POST("/user_role/del", admin.UserRoleHdl.Delete)    // delete
 
-	//AdminGroup.GET("/user_permissions/query", admin.UserPermissionsHdl.Detail)    // query list
+	//AdminGroup.GET("/user_permissions/query", admin.UserPermissionsHdl.Config)    // query list
 	//AdminGroup.GET("/user_permissions/get", admin.UserPermissionsHdl.Get)        // get one detail
 	//AdminGroup.POST("/user_permissions/add", admin.UserPermissionsHdl.Add)       // insert
 	//AdminGroup.POST("/user_permissions/update", admin.UserPermissionsHdl.Update) // update
@@ -72,7 +72,10 @@ func initAdmin(engine *gin.Engine) {
 	AdminGroup.POST("/subsystem/del", admin.SubsystemHdl.Delete)      // delete
 	AdminGroup.POST("/subsystem/setInfo", admin.SubsystemHdl.SetInfo) // setInfo
 
-	AdminGroup.GET("/user_permission/detail", admin.UserPermissionsHdl.Detail)                // get detail
-	AdminGroup.POST("/user_permission/setPermission", admin.UserPermissionsHdl.SetPermission) // save
+	AdminGroup.GET("/user_permission/my", admin.UserPermissionHdl.My)         // 获取当前用户的菜单按钮权限
+	AdminGroup.GET("/user_permission/config", admin.UserPermissionHdl.Config) // 权限配置页面：获取全部菜单和按钮，以及用户拥有的权限
+	AdminGroup.POST("/user_permission/save", admin.UserPermissionHdl.Save)    // 保存用户权限配置（清除后新增）
+
+	AdminGroup.GET("/my/staffInfo", admin.MyHandler.StaffInfo)
 
 }
