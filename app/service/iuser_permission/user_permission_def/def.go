@@ -118,5 +118,5 @@ type MenuActions struct {
 
 type MyPermissions struct {
 	IsRoot      bool          `json:"isRoot"`
-	MenuActions []MenuActions `json:"routesActions"`
+	MenuActions []MenuActions `json:"menuActions"`
 }
