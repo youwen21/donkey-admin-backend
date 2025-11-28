@@ -5,7 +5,7 @@ import (
 	"gofly/app/service/ioperation"
 	"gofly/app/service/ioperation/operation_admin"
 	"gofly/app/service/ioperation/operation_def"
-	"gofly/middleware/middle_auth"
+	"gofly/middleware"
 	"gofly/req-resp/appresp"
 	"net/http"
 
@@ -68,7 +68,7 @@ func (hdl *operationHdl) Add(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, appresp.Err(err))
 		return
 	}
-	info.CreateUid = middle_auth.GetAdminId(c)
+	info.CreateUid = middleware.GetAdminId(c)
 
 	err := ioperation.Srv.Insert(info)
 	c.JSON(http.StatusOK, appresp.Reps(info, err))
@@ -80,7 +80,7 @@ func (hdl *operationHdl) Update(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, appresp.Err(err))
 		return
 	}
-	info.UpdateUid = middle_auth.GetAdminId(c)
+	info.UpdateUid = middleware.GetAdminId(c)
 
 	_, err := ioperation.Srv.Update(info)
 	c.JSON(http.StatusOK, appresp.Reps(info, err))

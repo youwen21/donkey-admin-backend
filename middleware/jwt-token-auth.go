@@ -1,12 +1,33 @@
 package middleware
 
 import (
+	"gofly/lib/libutils"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"
-	"gofly/lib/libutils"
-	"gofly/middleware/middle_auth"
-	"net/http"
 )
+
+const (
+	// admin token
+	AdminAuthKey   = "X-Admin-Authorization" // header 或者 cookie key
+	AdminJwtSecret = "ADMIN_JWT_SECRET"      // jwt secret
+	AdminUserKey   = "admin_id"              // auth 认证成功后，uid 存在gin.Context key
+
+	// inner token
+	InnerAuthKey   = "X-Inner-Authorization" // header 或者 cookie key
+	InnerJwtSecret = "INNER_JWT_SECRET"      // jwt secret
+	InnerSystemKey = "system_id"             // auth 认证成功后，uid 存在gin.Context的key
+
+)
+
+func GetAdminId(c *gin.Context) int {
+	return c.GetInt(AdminUserKey)
+}
+
+func GetSystemId(c *gin.Context) int {
+	return c.GetInt(InnerSystemKey)
+}
 
 func jwtTokenWare(tokenKey string, secret string, storeKey string) func(c *gin.Context) {
 	// storeKey gin 和 jwt claims中的key
@@ -38,13 +59,13 @@ func jwtTokenWare(tokenKey string, secret string, storeKey string) func(c *gin.C
 
 // InnerToken 内部api token
 func InnerToken() func(c *gin.Context) {
-	tokenKey := middle_auth.InnerAuthKey // read from config
-	secret := middle_auth.InnerJwtSecret //  os.Getenv("USER_JWT_SECRET")
-	systemKey := middle_auth.InnerSystemKey
+	tokenKey := InnerAuthKey // read from config
+	secret := InnerJwtSecret //  os.Getenv("USER_JWT_SECRET")
+	systemKey := InnerSystemKey
 	return jwtTokenWare(tokenKey, secret, systemKey)
 }
 
 // AdminToken 避免每次调用AdminTokenWare中间件都要传入 tokenKet, secret, userKey, 三个参数， 封装一下， 自行改动。
 func AdminToken() func(c *gin.Context) {
-	return jwtTokenWare(middle_auth.AdminAuthKey, middle_auth.AdminJwtSecret, middle_auth.AdminUserKey)
+	return jwtTokenWare(AdminAuthKey, AdminJwtSecret, AdminUserKey)
 }

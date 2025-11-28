@@ -3,7 +3,7 @@ package admin
 import (
 	"github.com/gin-gonic/gin"
 	"gofly/app/service/iuser"
-	"gofly/middleware/middle_auth"
+	"gofly/middleware"
 	"gofly/req-resp/appresp"
 	"net/http"
 )
@@ -16,7 +16,7 @@ var (
 )
 
 func (h *myHandler) StaffInfo(c *gin.Context) {
-	adminId := middle_auth.GetAdminId(c)
+	adminId := middleware.GetAdminId(c)
 	info, err := iuser.Srv.Get(adminId)
 	if err != nil {
 		c.JSON(http.StatusOK, appresp.Err(err))

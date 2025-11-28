@@ -10,6 +10,7 @@ import (
 	"gofly/app/service/iuser_permission/user_permission_def"
 	"gofly/app/service/tree/menutree"
 	"gofly/lib/libutils"
+	"slices"
 )
 
 /*  */
@@ -212,4 +213,41 @@ func (aSrv *adminSrv) Save(f *user_permission_def.SetPermissionForm) (int64, err
 
 	_, _ = iuser_permission.Srv.ClearUserPermission(f.UserId, f.SystemId)
 	return iuser_permission.Srv.BatchInsert(userPermissions, 100)
+}
+
+func (aSrv *adminSrv) CheckMenuPermission(userId int, menuId int) (bool, error) {
+	userInfo, err := iuser.Srv.Get(userId)
+	if err != nil {
+		return false, err
+	}
+	if userInfo.IsRoot == 1 {
+		return true, nil
+	}
+
+	pForm := new(user_permission_def.ConfigForm)
+	pForm.UserId = userId
+	pForm.SystemId = 1
+	permissions, err := aSrv.GetAuthorizedPermissions(pForm)
+	if err != nil {
+		return false, err
+	}
+	return slices.Contains(permissions.MenuIdList, menuId), nil
+}
+func (aSrv *adminSrv) CheckOperationPermission(userId int, operationId int) (bool, error) {
+	userInfo, err := iuser.Srv.Get(userId)
+	if err != nil {
+		return false, err
+	}
+	if userInfo.IsRoot == 1 {
+		return true, nil
+	}
+
+	pForm := new(user_permission_def.ConfigForm)
+	pForm.UserId = userId
+	pForm.SystemId = 1
+	permissions, err := aSrv.GetAuthorizedPermissions(pForm)
+	if err != nil {
+		return false, err
+	}
+	return slices.Contains(permissions.OperationIdList, operationId), nil
 }

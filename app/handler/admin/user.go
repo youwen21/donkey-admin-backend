@@ -5,7 +5,7 @@ import (
 	"gofly/app/service/iuser"
 	"gofly/app/service/iuser/user_admin"
 	"gofly/app/service/iuser/user_def"
-	"gofly/middleware/middle_auth"
+	"gofly/middleware"
 	"gofly/req-resp/appresp"
 	"net/http"
 	"strings"
@@ -73,7 +73,7 @@ func (hdl *userHdl) Add(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, appresp.Err(err))
 		return
 	}
-	info.CreateUid = middle_auth.GetAdminId(c)
+	info.CreateUid = middleware.GetAdminId(c)
 
 	_, err := user_admin.AdminSrv.Add(info)
 	c.JSON(http.StatusOK, appresp.Reps(info, err))
@@ -85,7 +85,7 @@ func (hdl *userHdl) Update(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, appresp.Err(err))
 		return
 	}
-	info.UpdateUid = middle_auth.GetAdminId(c)
+	info.UpdateUid = middleware.GetAdminId(c)
 
 	_, err := user_admin.AdminSrv.Update(info)
 	c.JSON(http.StatusOK, appresp.Reps(info, err))

@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gofly/app/service/acl"
 	"gofly/app/service/tree/menutree"
-	"gofly/middleware/middle_auth"
+	"gofly/middleware"
 	"gofly/req-resp/appresp"
 	"net/http"
 )
@@ -26,7 +26,7 @@ func (h *menuTreeHandler) AclMenuTree(c *gin.Context) {
 		form.SystemId = 1
 	}
 
-	form.AdminId = middle_auth.GetAdminId(c)
+	form.AdminId = middleware.GetAdminId(c)
 
 	// 方便测试
 	//if form.AdminId == 0 {
@@ -47,7 +47,7 @@ func (h *menuTreeHandler) AclMenuTree(c *gin.Context) {
 //		form.SystemId = 1
 //	}
 //
-//	form.AdminUserId = middle_auth.GetAdminId(c)
+//	form.AdminUserId = middleware.GetAdminId(c)
 //
 //	// 方便测试
 //	if form.AdminUserId == 0 {

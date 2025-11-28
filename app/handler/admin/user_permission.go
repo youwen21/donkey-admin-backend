@@ -3,7 +3,7 @@ package admin
 import (
 	"gofly/app/service/iuser_permission/user_permission_admin"
 	"gofly/app/service/iuser_permission/user_permission_def"
-	"gofly/middleware/middle_auth"
+	"gofly/middleware"
 	"gofly/req-resp/appresp"
 	"net/http"
 
@@ -24,7 +24,7 @@ func (hdl *userPermissionHdl) My(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, appresp.Err(err))
 		return
 	}
-	form.OperatorUid = middle_auth.GetAdminId(c)
+	form.OperatorUid = middleware.GetAdminId(c)
 	if form.SystemId == 0 {
 		form.SystemId = 1
 	}
@@ -50,7 +50,7 @@ func (hdl *userPermissionHdl) Save(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, appresp.Err(err))
 		return
 	}
-	form.OperatorUid = middle_auth.GetAdminId(c)
+	form.OperatorUid = middleware.GetAdminId(c)
 	form.Unique()
 
 	affected, err := user_permission_admin.AdminSrv.Save(form)

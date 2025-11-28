@@ -7,7 +7,7 @@ import (
 	"gofly/app/service/auth/auth_def"
 	"gofly/app/service/iuser"
 	"gofly/lib/libutils"
-	"gofly/middleware/middle_auth"
+	"gofly/middleware"
 	"time"
 )
 
@@ -30,7 +30,7 @@ func (s *srv) Login(f *auth_def.LoginForm) (string, *model.UserBaseInfo, error) 
 		return "", nil, errors.New("用户名或密码错误2")
 	}
 
-	tokenString, err := libutils.Jwt.GenToken(middle_auth.AdminJwtSecret, jwt.MapClaims{middle_auth.AdminUserKey: adminData.Id, "exp": time.Now().Unix() + 86400}) //*30
+	tokenString, err := libutils.Jwt.GenToken(middleware.AdminJwtSecret, jwt.MapClaims{middleware.AdminUserKey: adminData.Id, "exp": time.Now().Unix() + 86400}) //*30
 	if err != nil {
 		return "", nil, err
 	}

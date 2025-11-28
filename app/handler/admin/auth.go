@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gofly/app/service/auth"
 	"gofly/app/service/auth/auth_def"
-	"gofly/middleware/middle_auth"
+	"gofly/middleware"
 	"gofly/req-resp/appresp"
 	"net/http"
 )
@@ -60,13 +60,13 @@ func (h *authHandler) Login(c *gin.Context) {
 	if loginForm.Remember {
 		cookieMaxAge = 86400 * 7
 	}
-	c.SetCookie(middle_auth.AdminAuthKey, tokenString, cookieMaxAge, "/", c.Request.Host, true, true)
+	c.SetCookie(middleware.AdminAuthKey, tokenString, cookieMaxAge, "/", c.Request.Host, true, true)
 	c.JSON(http.StatusOK, appresp.Reps(gin.H{"token": tokenString, "params": qValues}, nil)) //"info": adminInfo
 }
 
 func (h *authHandler) Logout(c *gin.Context) {
 	// 设置cookie, 支持ajax
 	c.SetSameSite(http.SameSiteNoneMode)
-	c.SetCookie(middle_auth.AdminAuthKey, "", -1, "/", c.Request.Host, true, true)
+	c.SetCookie(middleware.AdminAuthKey, "", -1, "/", c.Request.Host, true, true)
 	c.JSON(http.StatusOK, appresp.Reps("success", nil))
 }
