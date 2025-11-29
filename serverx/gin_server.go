@@ -1,9 +1,9 @@
 package serverx
 
 import (
+	"donkey-admin/asset"
+	"donkey-admin/router"
 	"github.com/gin-gonic/gin"
-	"gofly/asset"
-	"gofly/router"
 	"io/fs"
 	"net/http"
 )

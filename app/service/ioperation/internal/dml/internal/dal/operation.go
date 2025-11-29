@@ -1,11 +1,11 @@
 package dal
 
 import (
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/ioperation/operation_def"
+	"donkey-admin/apperror"
+	"donkey-admin/conf"
 	"errors"
-	"gofly/app/model"
-	"gofly/app/service/ioperation/operation_def"
-	"gofly/apperror"
-	"gofly/conf"
 
 	"gorm.io/gorm"
 )

@@ -1,11 +1,11 @@
 package admin
 
 import (
+	"donkey-admin/app/service/auth"
+	"donkey-admin/app/service/auth/auth_def"
+	"donkey-admin/middleware"
+	"donkey-admin/req-resp/appresp"
 	"github.com/gin-gonic/gin"
-	"gofly/app/service/auth"
-	"gofly/app/service/auth/auth_def"
-	"gofly/middleware"
-	"gofly/req-resp/appresp"
 	"net/http"
 )
 

@@ -1,8 +1,8 @@
 package menu_def
 
 import (
-	"gofly/app/model"
-	"gofly/lib/libdto"
+	"donkey-admin/app/model"
+	"donkey-admin/lib/libdto"
 )
 
 /*  */

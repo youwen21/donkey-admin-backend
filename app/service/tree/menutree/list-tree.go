@@ -1,7 +1,7 @@
 package menutree
 
 import (
-	"gofly/app/model"
+	"donkey-admin/app/model"
 	"sort"
 )
 

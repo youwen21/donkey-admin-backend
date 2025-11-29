@@ -1,6 +1,6 @@
 package conf
 
-import "gofly/lib/libutils"
+import "donkey-admin/lib/libutils"
 
 type SmtpCfg struct {
 	Host     string `toml:"host" mapstructure:"host"`

@@ -1,11 +1,11 @@
 package dml
 
 import (
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/irole_menu/internal/dml/internal/dal"
+	"donkey-admin/app/service/irole_menu/role_menu_def"
+	"donkey-admin/lib/lru"
 	"fmt"
-	"gofly/app/model"
-	"gofly/app/service/irole_menu/internal/dml/internal/dal"
-	"gofly/app/service/irole_menu/role_menu_def"
-	"gofly/lib/lru"
 )
 
 /*  */

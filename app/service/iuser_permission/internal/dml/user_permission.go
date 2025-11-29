@@ -1,11 +1,11 @@
 package dml
 
 import (
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/iuser_permission/internal/dml/internal/dal"
+	"donkey-admin/app/service/iuser_permission/user_permission_def"
+	"donkey-admin/lib/lru"
 	"fmt"
-	"gofly/app/model"
-	"gofly/app/service/iuser_permission/internal/dml/internal/dal"
-	"gofly/app/service/iuser_permission/user_permission_def"
-	"gofly/lib/lru"
 )
 
 /*  */

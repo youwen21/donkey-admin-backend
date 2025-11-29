@@ -1,12 +1,12 @@
 package admin
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/isubsystem"
-	"gofly/app/service/isubsystem/subsystem_admin"
-	"gofly/app/service/isubsystem/subsystem_def"
-	"gofly/middleware"
-	"gofly/req-resp/appresp"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/isubsystem"
+	"donkey-admin/app/service/isubsystem/subsystem_admin"
+	"donkey-admin/app/service/isubsystem/subsystem_def"
+	"donkey-admin/middleware"
+	"donkey-admin/req-resp/appresp"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

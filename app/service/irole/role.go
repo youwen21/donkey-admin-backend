@@ -1,9 +1,9 @@
 package irole
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/irole/internal/dml"
-	"gofly/app/service/irole/role_def"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/irole/internal/dml"
+	"donkey-admin/app/service/irole/role_def"
 )
 
 /*  */

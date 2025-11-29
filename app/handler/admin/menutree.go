@@ -1,11 +1,11 @@
 package admin
 
 import (
+	"donkey-admin/app/service/acl"
+	"donkey-admin/app/service/tree/menutree"
+	"donkey-admin/middleware"
+	"donkey-admin/req-resp/appresp"
 	"github.com/gin-gonic/gin"
-	"gofly/app/service/acl"
-	"gofly/app/service/tree/menutree"
-	"gofly/middleware"
-	"gofly/req-resp/appresp"
 	"net/http"
 )
 

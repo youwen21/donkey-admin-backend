@@ -1,23 +1,18 @@
 package apperror
 
+// 0 表示成功
+// 9999 未定义通用错误
+
+// 100-600 http系统级错误范围
+// 1000-1500 mysql 错误范围 ， 具体参考 mysql.MySQLError 和 mysql 错误码
+// 1999 redis 错误码，redis包未定义错误码, redis.Error = errors.New("xxx"), 因此接口返回：{code:1999, message:redis.Error}
+
+// 3000-4000 handler 校验参数错误范围，各 handler 错误码可以重复。
+// 4000-5000 service 错误范围，各 service 错误码可以重复。
+// 5000-6000 model 错误范围，各 model 错误码可以重复。
 var (
-	SUCC   = AppError{0, "success"}
-	FAILED = AppError{1, "failed"}
+	SUCCESS = AppError{0, "success"}
 
-	PARAM    = AppError{11, "parameter error"}
-	INTER    = AppError{12, "internal error"}
-	TIMEOUT  = AppError{13, "timeout error"}
-	EXTERNAL = AppError{14, "external error"}
-	RESRC    = AppError{15, "resource does not exist"}
-	EXIST    = AppError{16, "resource already exists"}
-
-	AuthFailed  = AppError{100, "authentication failed"}
-	InvalidSign = AppError{101, "invalid signature"}
-
-	DAL     = AppError{500, "dal level error"}
-	DML     = AppError{501, "dml level error"}
-	SERVICE = AppError{502, "service level error"}
-	HANDLER = AppError{503, "handler level error"}
-
-	PkListEmpty = AppError{600, "pk list is empty"}
+	IdEmpty     = AppError{5001, "id empty"}
+	PkListEmpty = AppError{5002, "id list empty"}
 )

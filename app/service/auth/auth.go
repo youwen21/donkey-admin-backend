@@ -1,13 +1,13 @@
 package auth
 
 import (
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/auth/auth_def"
+	"donkey-admin/app/service/iuser"
+	"donkey-admin/lib/libutils"
+	"donkey-admin/middleware"
 	"errors"
 	"github.com/golang-jwt/jwt/v4"
-	"gofly/app/model"
-	"gofly/app/service/auth/auth_def"
-	"gofly/app/service/iuser"
-	"gofly/lib/libutils"
-	"gofly/middleware"
 	"time"
 )
 

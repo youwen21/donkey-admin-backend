@@ -1,10 +1,10 @@
 package iuser_permission
 
 import (
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/iuser_permission/internal/dml"
+	"donkey-admin/app/service/iuser_permission/user_permission_def"
 	"fmt"
-	"gofly/app/model"
-	"gofly/app/service/iuser_permission/internal/dml"
-	"gofly/app/service/iuser_permission/user_permission_def"
 )
 
 /*  */

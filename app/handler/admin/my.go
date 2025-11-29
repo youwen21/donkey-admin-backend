@@ -1,10 +1,10 @@
 package admin
 
 import (
+	"donkey-admin/app/service/iuser"
+	"donkey-admin/middleware"
+	"donkey-admin/req-resp/appresp"
 	"github.com/gin-gonic/gin"
-	"gofly/app/service/iuser"
-	"gofly/middleware"
-	"gofly/req-resp/appresp"
 	"net/http"
 )
 

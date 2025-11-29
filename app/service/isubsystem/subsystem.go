@@ -1,9 +1,9 @@
 package isubsystem
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/isubsystem/internal/dml"
-	"gofly/app/service/isubsystem/subsystem_def"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/isubsystem/internal/dml"
+	"donkey-admin/app/service/isubsystem/subsystem_def"
 )
 
 /*  */

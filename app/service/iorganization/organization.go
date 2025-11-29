@@ -1,9 +1,9 @@
 package iorganization
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/iorganization/internal/dml"
-	"gofly/app/service/iorganization/organization_def"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/iorganization/internal/dml"
+	"donkey-admin/app/service/iorganization/organization_def"
 )
 
 /*  */

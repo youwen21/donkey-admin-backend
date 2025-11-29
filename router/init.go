@@ -1,8 +1,8 @@
 package router
 
 import (
+	"donkey-admin/middleware"
 	"github.com/gin-gonic/gin"
-	"gofly/middleware"
 )
 
 func InitRouter(engine *gin.Engine) {

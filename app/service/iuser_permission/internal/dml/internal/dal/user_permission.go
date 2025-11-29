@@ -1,11 +1,11 @@
 package dal
 
 import (
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/iuser_permission/user_permission_def"
+	"donkey-admin/apperror"
+	"donkey-admin/conf"
 	"errors"
-	"gofly/app/model"
-	"gofly/app/service/iuser_permission/user_permission_def"
-	"gofly/apperror"
-	"gofly/conf"
 
 	"gorm.io/gorm"
 )

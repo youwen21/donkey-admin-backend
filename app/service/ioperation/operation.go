@@ -1,9 +1,9 @@
 package ioperation
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/ioperation/internal/dml"
-	"gofly/app/service/ioperation/operation_def"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/ioperation/internal/dml"
+	"donkey-admin/app/service/ioperation/operation_def"
 )
 
 /*  */

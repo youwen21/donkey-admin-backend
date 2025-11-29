@@ -1,11 +1,11 @@
 package menu_admin
 
 import (
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/imenu"
+	"donkey-admin/app/service/imenu/menu_def"
+	"donkey-admin/app/service/tree/menutree"
 	"fmt"
-	"gofly/app/model"
-	"gofly/app/service/imenu"
-	"gofly/app/service/imenu/menu_def"
-	"gofly/app/service/tree/menutree"
 )
 
 /*  */

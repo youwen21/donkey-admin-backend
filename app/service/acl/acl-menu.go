@@ -1,12 +1,12 @@
 package acl
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/imenu"
-	"gofly/app/service/iuser"
-	"gofly/app/service/iuser_permission"
-	"gofly/app/service/iuser_permission/user_permission_def"
-	"gofly/app/service/tree/menutree"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/imenu"
+	"donkey-admin/app/service/iuser"
+	"donkey-admin/app/service/iuser_permission"
+	"donkey-admin/app/service/iuser_permission/user_permission_def"
+	"donkey-admin/app/service/tree/menutree"
 )
 
 type menuSrv struct{}

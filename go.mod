@@ -1,4 +1,4 @@
-module gofly
+module donkey-admin
 
 go 1.19
 

@@ -1,6 +1,6 @@
 package menutree
 
-import "gofly/app/model"
+import "donkey-admin/app/model"
 
 type UserMenuForm struct {
 	SystemId int `json:"system_id,default=1" form:"system_id,default=1"`

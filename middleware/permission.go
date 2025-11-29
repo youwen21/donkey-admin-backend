@@ -1,9 +1,9 @@
 package middleware
 
 import (
+	"donkey-admin/app/service/iuser_permission/user_permission_admin"
+	"donkey-admin/app/service/iuser_permission/user_permission_def"
 	"github.com/gin-gonic/gin"
-	"gofly/app/service/iuser_permission/user_permission_admin"
-	"gofly/app/service/iuser_permission/user_permission_def"
 	"net/http"
 )
 

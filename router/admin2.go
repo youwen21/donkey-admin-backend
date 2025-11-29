@@ -1,8 +1,8 @@
 package router
 
 import (
-	"gofly/app/handler/admin"
-	"gofly/middleware"
+	"donkey-admin/app/handler/admin"
+	"donkey-admin/middleware"
 
 	"github.com/gin-gonic/gin"
 )

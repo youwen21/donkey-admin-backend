@@ -1,14 +1,14 @@
 package rbac
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/imenu"
-	"gofly/app/service/irole_menu"
-	"gofly/app/service/irole_menu/role_menu_def"
-	"gofly/app/service/iuser"
-	"gofly/app/service/iuser_role"
-	"gofly/app/service/tree/menutree"
-	"gofly/lib/libutils"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/imenu"
+	"donkey-admin/app/service/irole_menu"
+	"donkey-admin/app/service/irole_menu/role_menu_def"
+	"donkey-admin/app/service/iuser"
+	"donkey-admin/app/service/iuser_role"
+	"donkey-admin/app/service/tree/menutree"
+	"donkey-admin/lib/libutils"
 	"slices"
 )
 

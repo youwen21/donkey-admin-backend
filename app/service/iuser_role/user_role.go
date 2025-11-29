@@ -1,9 +1,9 @@
 package iuser_role
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/iuser_role/internal/dml"
-	"gofly/app/service/iuser_role/user_role_def"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/iuser_role/internal/dml"
+	"donkey-admin/app/service/iuser_role/user_role_def"
 )
 
 /*  */

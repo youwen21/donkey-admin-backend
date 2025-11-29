@@ -1,10 +1,10 @@
 package admin
 
 import (
-	"gofly/app/service/iuser_permission/user_permission_admin"
-	"gofly/app/service/iuser_permission/user_permission_def"
-	"gofly/middleware"
-	"gofly/req-resp/appresp"
+	"donkey-admin/app/service/iuser_permission/user_permission_admin"
+	"donkey-admin/app/service/iuser_permission/user_permission_def"
+	"donkey-admin/middleware"
+	"donkey-admin/req-resp/appresp"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

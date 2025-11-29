@@ -1,8 +1,8 @@
 package conf
 
 import (
+	"donkey-admin/conf/flag_vars"
 	"fmt"
-	"gofly/conf/flag_vars"
 	"os"
 	"runtime"
 	"strings"

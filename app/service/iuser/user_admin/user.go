@@ -1,10 +1,10 @@
 package user_admin
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/iuser"
-	"gofly/app/service/iuser/user_def"
-	"gofly/lib/libutils"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/iuser"
+	"donkey-admin/app/service/iuser/user_def"
+	"donkey-admin/lib/libutils"
 )
 
 /*  */

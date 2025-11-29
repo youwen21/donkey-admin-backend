@@ -1,11 +1,11 @@
 package organization_admin
 
 import (
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/iorganization"
+	"donkey-admin/app/service/iorganization/organization_def"
+	"donkey-admin/app/service/tree/orgtree"
 	"fmt"
-	"gofly/app/model"
-	"gofly/app/service/iorganization"
-	"gofly/app/service/iorganization/organization_def"
-	"gofly/app/service/tree/orgtree"
 )
 
 /*  */

@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"gofly/lib/libutils"
+	"donkey-admin/lib/libutils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

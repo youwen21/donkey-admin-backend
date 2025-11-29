@@ -1,11 +1,11 @@
 package admin
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/irole"
-	"gofly/app/service/irole/role_admin"
-	"gofly/app/service/irole/role_def"
-	"gofly/req-resp/appresp"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/irole"
+	"donkey-admin/app/service/irole/role_admin"
+	"donkey-admin/app/service/irole/role_def"
+	"donkey-admin/req-resp/appresp"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

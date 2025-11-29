@@ -1,10 +1,10 @@
 package main
 
 import (
+	"donkey-admin/conf"
+	"donkey-admin/conf/flag_vars"
+	"donkey-admin/serverx"
 	"fmt"
-	"gofly/conf"
-	"gofly/conf/flag_vars"
-	"gofly/serverx"
 	"log"
 	"net"
 	"net/http"

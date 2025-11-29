@@ -1,7 +1,7 @@
 package lru
 
 import (
-	"gofly/lib/lru/simplelru"
+	"donkey-admin/lib/lru/simplelru"
 	"sync"
 )
 

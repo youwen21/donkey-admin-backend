@@ -1,6 +1,6 @@
 package orgtree
 
-import "gofly/app/model"
+import "donkey-admin/app/model"
 
 type TreeOrg struct {
 	model.Organization

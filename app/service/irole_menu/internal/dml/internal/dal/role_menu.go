@@ -1,10 +1,10 @@
 package dal
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/irole_menu/role_menu_def"
-	"gofly/apperror"
-	"gofly/conf"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/irole_menu/role_menu_def"
+	"donkey-admin/apperror"
+	"donkey-admin/conf"
 
 	"gorm.io/gorm"
 )

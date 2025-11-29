@@ -1,9 +1,9 @@
 package role_admin
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/irole"
-	"gofly/app/service/irole/role_def"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/irole"
+	"donkey-admin/app/service/irole/role_def"
 )
 
 /*  */

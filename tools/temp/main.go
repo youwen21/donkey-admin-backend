@@ -1,8 +1,8 @@
 package main
 
 import (
+	"donkey-admin/lib/libutils"
 	"fmt"
-	"gofly/lib/libutils"
 )
 
 func main() {

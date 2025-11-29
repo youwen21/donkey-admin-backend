@@ -1,9 +1,9 @@
 package operation_admin
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/ioperation"
-	"gofly/app/service/ioperation/operation_def"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/ioperation"
+	"donkey-admin/app/service/ioperation/operation_def"
 )
 
 /*  */

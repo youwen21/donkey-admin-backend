@@ -1,35 +1,36 @@
 package appresp
 
 import (
+	"donkey-admin/apperror"
 	"errors"
-	"gofly/apperror"
+	"github.com/go-sql-driver/mysql"
 )
 
 type RespData struct {
-	Code int         `json:"code"`
-	Msg  string      `json:"msg"`
-	Data interface{} `json:"data"`
+	Code    int         `json:"code"`
+	Message string      `json:"message"`
+	Data    interface{} `json:"data"`
 }
 
 func Ok() *RespData {
 	return &RespData{
-		Code: 0,
-		Msg:  "ok",
+		Code:    0,
+		Message: "ok",
 	}
 }
 
 func Data(data interface{}) *RespData {
 	return &RespData{
-		Code: 0,
-		Msg:  "ok",
-		Data: data,
+		Code:    0,
+		Message: "ok",
+		Data:    data,
 	}
 }
 
 func CodeErr(code int, err error) *RespData {
 	return &RespData{
-		Code: code,
-		Msg:  err.Error(),
+		Code:    code,
+		Message: err.Error(),
 	}
 }
 
@@ -43,7 +44,14 @@ func extractErr(err error) (int, string) {
 	var appErr apperror.AppError
 	ok := errors.As(err, &appErr)
 	if ok {
-		code = appErr.Code
+		return appErr.Code, appErr.Message
+	}
+
+	mysqlErr := new(mysql.MySQLError)
+	ok = errors.As(err, &mysqlErr)
+	if ok {
+		code = int(mysqlErr.Number)
+		return code, mysqlErr.Message
 	}
 	return code, err.Error()
 }
@@ -56,15 +64,15 @@ func Err(err error) *RespData {
 	code, msg := extractErr(err)
 
 	return &RespData{
-		Code: code,
-		Msg:  msg,
+		Code:    code,
+		Message: msg,
 	}
 }
 
 func ErrMsg(errMsg string) *RespData {
 	return &RespData{
-		Code: 9999,
-		Msg:  errMsg,
+		Code:    9999,
+		Message: errMsg,
 	}
 }
 
@@ -76,9 +84,9 @@ func ErrData(data interface{}, err error) *RespData {
 	code, msg := extractErr(err)
 
 	return &RespData{
-		Code: code,
-		Msg:  msg,
-		Data: data,
+		Code:    code,
+		Message: msg,
+		Data:    data,
 	}
 }
 
@@ -91,8 +99,8 @@ func Reps(data interface{}, err error) *RespData {
 
 func Raw(code int, data interface{}, err error) *RespData {
 	return &RespData{
-		Code: code,
-		Msg:  err.Error(),
-		Data: data,
+		Code:    code,
+		Message: err.Error(),
+		Data:    data,
 	}
 }

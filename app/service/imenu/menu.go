@@ -1,9 +1,9 @@
 package imenu
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/imenu/internal/dml"
-	"gofly/app/service/imenu/menu_def"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/imenu/internal/dml"
+	"donkey-admin/app/service/imenu/menu_def"
 )
 
 /*  */

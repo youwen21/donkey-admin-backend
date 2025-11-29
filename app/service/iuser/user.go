@@ -1,9 +1,9 @@
 package iuser
 
 import (
-	"gofly/app/model"
-	"gofly/app/service/iuser/internal/dml"
-	"gofly/app/service/iuser/user_def"
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/iuser/internal/dml"
+	"donkey-admin/app/service/iuser/user_def"
 )
 
 /*  */

@@ -1,10 +1,10 @@
 package user_permission_def
 
 import (
+	"donkey-admin/app/model"
+	"donkey-admin/app/service/imenu/menu_def"
+	"donkey-admin/app/service/ioperation/operation_def"
 	"errors"
-	"gofly/app/model"
-	"gofly/app/service/imenu/menu_def"
-	"gofly/app/service/ioperation/operation_def"
 )
 
 type MyForm struct {
