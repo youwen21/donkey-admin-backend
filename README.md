@@ -20,7 +20,6 @@ donkey-admin-backend 是一套功能完善的后台服务接口系统，采用�
 - **Web 框架**: [Gin](https://github.com/gin-gonic/gin)
 - **ORM**: [GORM](https://gorm.io/)
 - **数据库**: MySQL 5.7+
-- **缓存**: Redis (可选)
 - **认证**: JWT
 
 ## 快速开始
