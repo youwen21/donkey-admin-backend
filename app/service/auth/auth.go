@@ -30,7 +30,7 @@ func (s *srv) Login(f *auth_def.LoginForm) (string, *model.UserBaseInfo, error) 
 		return "", nil, errors.New("用户名或密码错误2")
 	}
 
-	tokenString, err := libutils.Jwt.GenToken(middleware.AdminJwtSecret, jwt.MapClaims{middleware.AdminUserKey: adminData.Id, "exp": time.Now().Unix() + 86400}) //*30
+	tokenString, err := libutils.Jwt.GenToken(middleware.AdminJwtSecret, jwt.MapClaims{middleware.AdminCtxKey: adminData.Id, "exp": time.Now().Unix() + 86400*7}) // 记住登录7天，或者7天不关闭网页，登录最长有效期7天
 	if err != nil {
 		return "", nil, err
 	}

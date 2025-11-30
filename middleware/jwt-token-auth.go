@@ -12,21 +12,21 @@ const (
 	// admin token
 	AdminAuthKey   = "X-Admin-Authorization" // header 或者 cookie key
 	AdminJwtSecret = "ADMIN_JWT_SECRET"      // jwt secret
-	AdminUserKey   = "admin_id"              // auth 认证成功后，uid 存在gin.Context key
+	AdminCtxKey    = "admin_id"              // auth 认证成功后，uid 存在gin.Context key
 
 	// inner token
-	InnerAuthKey   = "X-Inner-Authorization" // header 或者 cookie key
-	InnerJwtSecret = "INNER_JWT_SECRET"      // jwt secret
-	InnerSystemKey = "system_id"             // auth 认证成功后，uid 存在gin.Context的key
+	SubsystemAuthKey   = "X-Inner-Authorization" // header 或者 cookie key
+	SubsystemJwtSecret = "INNER_JWT_SECRET"      // jwt secret
+	SubsystemCtxKey    = "system_id"             // auth 认证成功后，uid 存在gin.Context的key
 
 )
 
 func GetAdminId(c *gin.Context) int {
-	return c.GetInt(AdminUserKey)
+	return c.GetInt(AdminCtxKey)
 }
 
 func GetSystemId(c *gin.Context) int {
-	return c.GetInt(InnerSystemKey)
+	return c.GetInt(SubsystemCtxKey)
 }
 
 func jwtTokenWare(tokenKey string, secret string, storeKey string) func(c *gin.Context) {
@@ -59,13 +59,13 @@ func jwtTokenWare(tokenKey string, secret string, storeKey string) func(c *gin.C
 
 // InnerToken 内部api token
 func InnerToken() func(c *gin.Context) {
-	tokenKey := InnerAuthKey // read from config
-	secret := InnerJwtSecret //  os.Getenv("USER_JWT_SECRET")
-	systemKey := InnerSystemKey
+	tokenKey := SubsystemAuthKey // read from config
+	secret := SubsystemJwtSecret //  os.Getenv("USER_JWT_SECRET")
+	systemKey := SubsystemCtxKey
 	return jwtTokenWare(tokenKey, secret, systemKey)
 }
 
 // AdminToken 避免每次调用AdminTokenWare中间件都要传入 tokenKet, secret, userKey, 三个参数， 封装一下， 自行改动。
 func AdminToken() func(c *gin.Context) {
-	return jwtTokenWare(AdminAuthKey, AdminJwtSecret, AdminUserKey)
+	return jwtTokenWare(AdminAuthKey, AdminJwtSecret, AdminCtxKey)
 }

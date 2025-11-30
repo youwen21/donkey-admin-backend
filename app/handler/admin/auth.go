@@ -31,7 +31,7 @@ var (
 // 注意事项 2
 // SameSite=None和Secure属性需同时设置，否则Cookie不会在跨域请求中发送1。
 // JSONP已被淘汰，不支持跨域请求携带Cookie1。
-func (h *authHandler) Login(c *gin.Context) {
+func (hdl *authHandler) Login(c *gin.Context) {
 	loginForm := &auth_def.LoginForm{}
 	err := c.ShouldBind(&loginForm)
 	if nil != err {
@@ -64,7 +64,7 @@ func (h *authHandler) Login(c *gin.Context) {
 	c.JSON(http.StatusOK, appresp.Reps(gin.H{"token": tokenString, "params": qValues}, nil)) //"info": adminInfo
 }
 
-func (h *authHandler) Logout(c *gin.Context) {
+func (hdl *authHandler) Logout(c *gin.Context) {
 	// 设置cookie, 支持ajax
 	c.SetSameSite(http.SameSiteNoneMode)
 	c.SetCookie(middleware.AdminAuthKey, "", -1, "/", c.Request.Host, true, true)
