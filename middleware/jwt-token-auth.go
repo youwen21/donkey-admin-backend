@@ -12,12 +12,12 @@ const (
 	// admin token
 	AdminAuthKey   = "X-Admin-Authorization" // header 或者 cookie key
 	AdminJwtSecret = "ADMIN_JWT_SECRET"      // jwt secret
-	AdminCtxKey    = "admin_id"              // auth 认证成功后，uid 存在gin.Context key
+	AdminCtxKey    = "admin_id"              // auth 认证成功后，uid 存在gin.Context key, 同时是jwt 存储用户ID的key
 
-	// inner token
+	// subsystem token
 	SubsystemAuthKey   = "X-Inner-Authorization" // header 或者 cookie key
 	SubsystemJwtSecret = "INNER_JWT_SECRET"      // jwt secret
-	SubsystemCtxKey    = "system_id"             // auth 认证成功后，uid 存在gin.Context的key
+	SubsystemCtxKey    = "system_id"             // auth 认证成功后，uid 存在gin.Context的key, 同时是jwt 存储用户ID的key
 
 )
 
@@ -57,8 +57,8 @@ func jwtTokenWare(tokenKey string, secret string, storeKey string) func(c *gin.C
 //	c.Next()
 //}
 
-// InnerToken 内部api token
-func InnerToken() func(c *gin.Context) {
+// SubsystemToken 内部系统 api token
+func SubsystemToken() func(c *gin.Context) {
 	tokenKey := SubsystemAuthKey // read from config
 	secret := SubsystemJwtSecret //  os.Getenv("USER_JWT_SECRET")
 	systemKey := SubsystemCtxKey
