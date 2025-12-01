@@ -41,14 +41,15 @@ func (j *jwtUtil) GetToken(c *gin.Context, tokenKey string) (string, error) {
 		return tokenString, nil
 	}
 
-	form := &TicketDto{}
-	_ = c.ShouldBind(form)
-	if form.Token != "" { // 优先token
-		return form.Token, nil
-	}
-	if form.Authorization != "" { // 其次authorization
-		return form.Authorization, nil
-	}
+	// ShouldBind 不可重复调用， 所以固定从header、cookie中获取token
+	//form := &TicketDto{}
+	//_ = c.ShouldBind(form)
+	//if form.Token != "" { // 优先token
+	//	return form.Token, nil
+	//}
+	//if form.Authorization != "" { // 其次authorization
+	//	return form.Authorization, nil
+	//}
 
 	return "", errors.New("unauthorized")
 }
